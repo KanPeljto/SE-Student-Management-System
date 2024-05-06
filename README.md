@@ -1,1 +1,1 @@
-# SE-Bike-Shop
+# SE-Student-Management-System
