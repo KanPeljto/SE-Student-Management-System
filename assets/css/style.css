@@ -1,0 +1,54 @@
+body {
+  padding-top: 60px;
+}
+.course-card {
+  transition: transform 0.3s;
+}
+.course-card:hover {
+  transform: translateY(-5px);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+footer {
+  margin-bottom: fixed;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    transition: color 0.3s;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #ccc;
+  }
+  
+  .navbar-nav .nav-link.active {
+    font-weight: bold;
+    color: #333;
+  }
+  .navbar-brand {
+    font-family: 'Dancing Script', sans-serif;
+    font-size: 24px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(45deg, #ffffff, #ffffff);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 1s ease;
+
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
