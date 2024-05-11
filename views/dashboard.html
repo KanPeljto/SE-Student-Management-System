@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Online Learning Platform</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="./assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Dashboard</h2>
+
+    <div class="container mt-5" id="professorDashboard" style="display: none;">
+      <div class="row" id="courseList">
+      </div>
+      <button class="btn btn-success mt-3" id="addCourseButton">Add New Course</button>
+    </div>
+
+    <div class="container mt-5" id="studentDashboard" style="display: none;">
+      <div class="row" id="studentCourseList">
+      </div>
+    </div>
+
+    <div class="container mt-5" id="createCourseForm" style="display: none;">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">
+              Create Course
+              <button type="button" class="btn-close" aria-label="Close" id="closeCreateCourseFormButton"></button>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="mb-3">
+                  <label for="courseTitle" class="form-label">Course Title</label>
+                  <input type="text" class="form-control" id="courseTitle" placeholder="Enter course title">
+                </div>
+                <div class="mb-3">
+                  <label for="courseDescription" class="form-label">Course Description</label>
+                  <textarea class="form-control" id="courseDescription" rows="3"
+                    placeholder="Enter course description"></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="courseMaterial" class="form-label">Course Material (Upload)</label>
+                  <input type="file" class="form-control" id="courseMaterial">
+                </div>
+                <div class="mb-3">
+                  <label for="enrollmentOptions" class="form-label">Enrollment Options</label>
+                  <select class="form-select" id="enrollmentOptions">
+                    <option value="open">Open Enrollment</option>
+                    <option value="closed">Closed Enrollment</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="category" class="form-label">Category</label>
+                  <select class="form-select" id="category">
+                    <option value="natural-science">Natural Science</option>
+                    <option value="social-science">Social Science</option>
+                    <option value="mathematics">Mathematics</option>
+                    <option value="computer-science">Computer Science</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary" id="createCourseButton">Create Course</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-5" id="editCourseForm" style="display: none;">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">
+              Edit Course
+              <button type="button" class="btn-close" aria-label="Close" id="closeEditCourseFormButton"></button>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="mb-3">
+                  <label for="courseTitle" class="form-label">Course Title</label>
+                  <input type="text" class="form-control" id="courseTitle" placeholder="Enter course title">
+                </div>
+                <div class="mb-3">
+                  <label for="courseDescription" class="form-label">Course Description</label>
+                  <textarea class="form-control" id="courseDescription" rows="3"
+                    placeholder="Enter course description"></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="courseMaterial" class="form-label">Course Material (Upload)</label>
+                  <input type="file" class="form-control" id="courseMaterial">
+                </div>
+                <div class="mb-3">
+                  <label for="enrollmentOptions" class="form-label">Enrollment Options</label>
+                  <select class="form-select" id="enrollmentOptions">
+                    <option value="open">Open Enrollment</option>
+                    <option value="closed">Closed Enrollment</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="category" class="form-label">Category</label>
+                  <select class="form-select" id="category">
+                    <option value="natural-science">Natural Science</option>
+                    <option value="social-science">Social Science</option>
+                    <option value="mathematics">Mathematics</option>
+                    <option value="computer-science">Computer Science</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary" id="saveChangesButton">Save Changes</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+
+  <script src="./assets/js/dashboard.js">
+   
+  </script>
+
+
+</body>
+
+</html>

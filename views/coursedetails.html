@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Details - Online Learning Platform</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="./assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container mt-5">
+    <h1 class="mb-3" id="courseTitle"></h1>
+    <p class="lead mb-4" id="courseDescription"></p>
+    <h2 class="mb-3">Instructor: <span id="instructorName"></span></h2>
+    <div class="accordion" id="lectureAccordion">
+    </div>
+    <div class="mt-5">
+      <div id="professorOptions" style="display: none;">
+        <div class="dropdown">
+          <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            Lecture Options
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><button class="dropdown-item" id="addLectureBtn">Add New Lecture</button></li>
+          </ul>
+        </div>
+        <form id="addLectureForm" style="display: none;">
+          <div class="mb-3">
+            <label for="lectureTitle" class="form-label">Lecture Title</label>
+            <input type="text" class="form-control" id="lectureTitle" placeholder="Enter lecture title">
+          </div>
+          <div class="mb-3">
+            <label for="lectureDescription" class="form-label">Lecture Description</label>
+            <textarea class="form-control" id="lectureDescription" rows="3" placeholder="Enter lecture description"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="lectureMaterial" class="form-label">Lecture Material (Upload)</label>
+            <input type="file" class="form-control" id="lectureMaterial">
+          </div>
+          <button type="submit" class="btn btn-success">Add Lecture</button>
+          <button type="button" class="btn btn-secondary" id="closeFormBtn">Close</button>
+        </form>
+      </div>
+    </div>
+    <div class="mt-5 enrollment-options" id="enrollOptions">
+      <a href="#enroll" class="btn btn-primary">Enroll Now</a>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="./assets/js/coursedetails.js"></script>
+</body>
+
+</html>

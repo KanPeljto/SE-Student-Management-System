@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Learning Platform</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="./assets/css/style.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Welcome to Online Learning Platform</h1>
+        <p>Explore our courses and start learning today!</p>
+        <a href="#courselisting" class="btn btn-primary">Browse Courses</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Featured Courses</h2>
+    <div class="row" id="featuredCourses">
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $.ajax({
+        url: 'rest/routes/Course/get_courses.php',
+        method: 'GET',
+        success: function(response) {
+          if (response && response.length > 0) {
+            // Loop through first three courses and generate featured course cards
+            for (var i = 0; i < Math.min(response.length, 3); i++) {
+              var course = response[i];
+              var cardHtml = `
+                <div class="col-md-4">
+                  <div class="card course-card">
+                    <div class="card-body">
+                      <h5 class="card-title">${course.title}</h5>
+                      <p class="card-text">${course.description}</p>
+                      <a href="#coursedetails" class="btn btn-primary">View Details</a>
+                    </div>
+                  </div>
+                </div>
+              `;
+              $('#featuredCourses').append(cardHtml);
+            }
+          } else {
+            $('#featuredCourses').html('<p>No featured courses found.</p>');
+          }
+        },
+        error: function() {
+          $('#featuredCourses').html('<p>Error fetching featured courses data.</p>');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
