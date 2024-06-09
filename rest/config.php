@@ -1,6 +1,6 @@
 <?php
 define('DB_NAME', 'sms');
-define('DB_USER', 'root');
-define('DB_PASSWORD', 'root');
-define('DB_PORT', '8889');
-define('DB_HOST', 'localhost:8889'); 
+define('DB_PORT', 3306);
+define('DB_USER', 'seroot');
+define('DB_PASSWORD', 'Root1234');
+define('DB_HOST', 'sedb.mysql.database.azure.com'); 
