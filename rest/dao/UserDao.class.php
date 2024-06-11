@@ -7,8 +7,8 @@ class UserDao extends BaseDao {
         parent::__construct('users');
     }
 
-    public function add_user($user){
-        return $this->insert('users', $user);
+    public function add_user($user) {
+        return $this->user_dao->insert('users', $user);
     }
 
     public function count_users_paginated($search) {
@@ -38,8 +38,8 @@ class UserDao extends BaseDao {
         ]);
     }
 
-    public function get_user_by_id($id){
-        return $this->get_user_by_id($id);
+    public function get_user_by_id($user_id) {
+        return $this->query_unique('SELECT * FROM users WHERE user_id = :user_id', ['user_id' => $user_id]);
     }
 
     public function get_all_users(){
