@@ -1,0 +1,20 @@
+{
+    "courseTitle": "Introduction to Web Development",
+    "courseDescription": "This course provides an introduction to web development, covering HTML, CSS, and JavaScript fundamentals. Students will learn how to create static web pages and enhance them with styles and interactivity.",
+    "instructorName": "John Doe",
+    "lectures": [
+      {
+        "id": 1,
+        "title": "Lecture 1: Introduction to HTML",
+        "description": "This lecture covers the basics of HTML.",
+        "material": "lecture1_material.pdf"
+      },
+      {
+        "id": 2,
+        "title": "Lecture 2: Introduction to CSS",
+        "description": "This lecture covers the basics of CSS.",
+        "material": "lecture2_material.pdf"
+      }
+    ]
+  }
+  

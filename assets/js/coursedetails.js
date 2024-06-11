@@ -1,5 +1,6 @@
+const courseId = localStorage.getItem("courseId");
 $(document).ready(function () {
-    $.ajax({
+   /* $.ajax({
         url: 'http://localhost/OLP/data/userRole.json',
         dataType: 'json',
         success: function (data) {
@@ -18,12 +19,12 @@ $(document).ready(function () {
             console.error('Error fetching user role:', error);
         }
     });
-
+*/
     $.ajax({
-        url: 'rest/routes/Course/get_course.php', //?
+        url: 'rest/routes/Course/get_course.php' + '?id=' + localStorage.getItem('courseId'),
         dataType: 'json',
         data: {
-            id: 1
+            id: courseId
         },
         method:'POST',
         success: function (data) {
