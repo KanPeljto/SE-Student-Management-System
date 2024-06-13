@@ -9,7 +9,7 @@ class UserDao extends BaseDao {
 
     public function add_user($user) {
         return $this->user_dao->insert('users', $user);
-    }
+    } // like register
 
     public function count_users_paginated($search) {
         $query = "SELECT COUNT(*) AS count
@@ -69,4 +69,31 @@ class UserDao extends BaseDao {
     //     }
     //     return false;
     // }
+
+    public function login($email, $password){
+
+    }
+
+    public function register($email, $password, $full_name, $role){
+        $sql = $this->query("SELECT * FROM USERS WHERE email = :email");
+        $params = array(':email' => $email);
+        $user_db = $this->query($sql, $params);
+
+        if($user_db){
+            return false;
+        }
+
+        $user = [
+            'email' => $email,
+            'password'=>password_hash($password),
+            'full_name' => $full_name,
+            'role' => $role
+        ];
+
+        $new_user = $this->add_user($user);
+
+        return true;
+
+        
+    }
 }

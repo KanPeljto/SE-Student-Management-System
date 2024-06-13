@@ -6,12 +6,16 @@ $payload = json_decode($raw_data, true);
 
 $user_service = new UserService();
 
-if(empty($payload['name']) || empty($payload['email']) || empty($payload['password']) || empty($payload['role'])) {
-    header('HTTP/1.1 400 Bad Request');
-    die(json_encode(['error' => "Name, email, password, or role field is missing"]));
+try {
+    if(empty($payload['name']) || empty($payload['email']) || empty($payload['password']) || empty($payload['role'])) {
+        header('HTTP/1.1 400 Bad Request');
+        die(json_encode(['error' => "Name, email, password, or role field is missing"]));
+    }
+    
+    $user = $user_service->register($payload['email'],$payload['password'],$payload['full_name'], $payload['role']);
+    
+    echo json_encode(['message' => "You have successfully added the user", 'data' => $user]);
+} catch (PDOException $e){
+    die(json_encode(['error' => $e->getMessage()]));
 }
-
-$user = $user_service->add_user($payload);
-
-echo json_encode(['message' => "You have successfully added the user", 'data' => $user]);
 ?>
