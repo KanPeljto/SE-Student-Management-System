@@ -36,7 +36,7 @@ class UserDao extends BaseDao {
 
     public function get_user_email($email){
         $query = 'SELECT * FROM users WHERE email = :email';
-        $user = $this->execute($query, ['email' => $email]);
+        return $user = $this->query($query, ['email' => $email]);
     }
 
     public function delete_user_by_id($id) {

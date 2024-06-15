@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../services/InstructorService.class.php';
+require_once __DIR__ . '/../../services/InstructorService.class.php';
 
 $instructor_service = new InstructorService();
 $raw_data = file_get_contents("php://input");

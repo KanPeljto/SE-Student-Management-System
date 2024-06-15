@@ -13,5 +13,6 @@ if(empty($payload['name']) || empty($payload['email']) || empty($payload['passwo
 $payload['password'] = password_hash($payload['password'], PASSWORD_DEFAULT);
 $user = $user_service->add_user($payload);
 
+
 echo json_encode(['message' => "You have successfully added the user", 'data' => $user]);
 ?>

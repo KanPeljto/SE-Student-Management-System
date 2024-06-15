@@ -50,5 +50,6 @@ class UserService {
     public function get_user_email($email){
         return $this->user_dao->get_user_email($email);
     }
+
 }
 ?>

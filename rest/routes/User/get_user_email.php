@@ -9,5 +9,4 @@ if ($email === null){
 
 $userService = new UserService();
 $user = $userService->get_user_email($email);
-
-echo json_encode($user);
+echo json_encode($user, true);
