@@ -7,6 +7,7 @@ if ($email === null){
     die(json_encode(['error' => 'Email field is missing']));
 }
 
+
 $userService = new UserService();
 $user = $userService->get_user_email($email);
 echo json_encode($user, true);

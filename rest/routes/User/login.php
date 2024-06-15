@@ -9,7 +9,7 @@ $password = $_POST['password'];
 $user_service = new UserService();
 $user = $user_service->loginUser($email, $password);
 if($user === 'Incorrect password'){
-    echo json_encode(['error' => 'Login failed']);
+    echo json_encode(['error' => 'Incorrect password']);
     exit;
 }
 
