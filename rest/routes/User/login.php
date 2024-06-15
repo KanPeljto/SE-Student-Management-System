@@ -7,4 +7,4 @@ $password = $_POST['password'];
 $user_service = new UserService();
 $user = $user_service->loginUser($email, $password);
 
-echo json_encode(['loggedIn' => $user]);
+echo json_encode(['jwt_token' => $user]);

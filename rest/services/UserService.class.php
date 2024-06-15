@@ -42,5 +42,9 @@ class UserService {
     public function loginUser($email, $password){
         return $this->user_dao->login($email, $password);
     }
+
+    public function verifyToken($token){
+        return $this->user_dao->verifyToken($token);
+    }
 }
 ?>

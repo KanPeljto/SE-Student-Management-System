@@ -1,12 +1,23 @@
 <?php
+require_once __DIR__ . '/../../../vendor/autoload.php';
+require_once __DIR__ . '/../../services/UserService.class.php';
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 // Enable error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once __DIR__ . '/../../services/UserService.class.php';
 
 // Retrieve the user ID from the request
-$user_id = $_REQUEST['user_id'] ?? null; // Use null coalescing operator for safety
+$token = $_SERVER['HTTP_TOKEN'];
+if(!$token || $token === null){
+    echo json_encode(['error' => 'Token missing or invalid']);
+    http_response_code(401);
+    exit;
+}
+$decoded_token = JWT::decode($token, new Key(JWT_SECRET, 'HS256'));
+$user_id = $decoded_token->user_id;
+
 
 
 

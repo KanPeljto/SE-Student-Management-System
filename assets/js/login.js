@@ -14,11 +14,10 @@ $(document).ready(function() {
             },
             dataType: 'json',
             success: function(response){
-                console.log(response.loggedIn);
-                if (response.loggedIn === true){
-                    alert('Successfully logged in');
-                    window.location.href = '#home';
-                }
+                alert('Successfully logged in');
+                localStorage.setItem('jwt_token', response.jwt_token);
+                window.location.href = '#home';
+                
             }
         })
     });

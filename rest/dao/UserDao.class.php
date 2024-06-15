@@ -87,7 +87,22 @@ class UserDao extends BaseDao {
         if(password_verify($password, $user['password'])){
             $jwt = JWT::encode(['user_id' => $user['user_id']], JWT_SECRET, 'HS256');
             $this->add_jwt_to_db($user['user_id'], $jwt);
-            return true;
+            return $jwt;
+        }
+    }
+
+    public function verifyToken($token){
+        try {
+            $decoded = JWT::decode($token, new Key(JWT_SECRET, 'HS256'));
+        $user_id = $decoded->user_id;
+        $query = 'SELECT jwt_token FROM users WHERE user_id = :user_id';
+        $response = $this->execute($query, ['user_id' => $user_id]);
+        if ($response != $token){
+            return false;
+        }
+    
+        } catch (\Exception $e){
+            die('Invalid token');
         }
     }
 

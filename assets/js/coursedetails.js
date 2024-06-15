@@ -1,7 +1,11 @@
 $(document).ready(function () {
+    var token = localStorage.getItem('jwt_token');
     $.ajax({
-        url: 'http://localhost/OLP/data/userRole.json',
+        url: 'rest/routes/User/get_user.php',
         dataType: 'json',
+        headers: {
+            'TOKEN' : token
+        },
         success: function (data) {
             if (data.role === 'professor') {
                 $('#professorOptions').show();
@@ -26,6 +30,7 @@ $(document).ready(function () {
             id: 1
         },
         method:'POST',
+        headers: {'TOKEN' : token}, 
         success: function (data) {
             console.log(data);
             $('#courseTitle').text(data.title);
