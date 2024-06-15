@@ -1,6 +1,9 @@
 <?php
 
 require_once __DIR__ . '/BaseDao.class.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class UserDao extends BaseDao {
     public function __construct() {
@@ -65,6 +68,11 @@ class UserDao extends BaseDao {
         ]);
     }
 
+    public function add_jwt_to_db($user_id, $jwt){
+        $query = 'UPDATE users SET jwt_token = :jwt_token WHERE user_id = :user_id';
+        $this->execute($query, ['jwt_token' => $jwt, 'user_id' => $user_id]);
+    }
+
     public function login($email, $password){
         $user = $this->get_user_by_email($email);
         if(!$user){
@@ -77,6 +85,8 @@ class UserDao extends BaseDao {
         }
 
         if(password_verify($password, $user['password'])){
+            $jwt = JWT::encode(['user_id' => $user['user_id']], JWT_SECRET, 'HS256');
+            $this->add_jwt_to_db($user['user_id'], $jwt);
             return true;
         }
     }
@@ -91,4 +101,3 @@ class UserDao extends BaseDao {
     // }
 }
 
-//$2y$10$WEdEacWHlG/rGtCQJqXO.Oxa70UElirWNyO.tZJXh1VzbkNO5Xoim$2y$10$E11UiFYSCu/nQkyeJzAc3Om75qiSzSgDU9i9EXiA5eGJv7hYbK6Ne 
