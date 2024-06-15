@@ -1,5 +1,6 @@
 
 $(document).ready(function () {
+  var oldTitle = "";
   const token = localStorage.getItem('jwt_token');
   if (!token) {
       console.error('JWT token is missing');
@@ -57,6 +58,7 @@ $(document).ready(function () {
               </div>
             </div>`;
             courseList.append(card);
+            oldTitle = course.title;
           });
           $('#professorDashboard').show(); 
         },
@@ -100,6 +102,7 @@ $(document).ready(function () {
       const enrollmentOptions = $('#enrollmentOptions').val();
       const category = $('#category').val();
 
+
       $.ajax({
         url: 'rest/routes/User/get_user.php',
         dataType: 'json',
@@ -116,7 +119,7 @@ $(document).ready(function () {
               $.ajax({
                 url:'rest/routes/Course/add_course.php',
                 method: 'POST',
-                data: {course_title: courseTitle, course_description: courseDescription, course_material: courseMaterial, enrollment_options: enrollmentOptions, category: category, instructor_id : instructor_id},
+                data: {course_title: oldTitle, course_description: courseDescription, course_material: courseMaterial, enrollment_options: enrollmentOptions, category: category, instructor_id : instructor_id},
                 success: function(){
                   alert('Successfully added course');
                 }
@@ -138,6 +141,49 @@ $(document).ready(function () {
     $('#courseList').on('click', '.editCourse', function () {
       $('#editCourseForm').show(); 
     });
+
+    $('#editCourseForm').on('submit', function() {
+      const title = $('#courseTitleEdit').val();
+      const description = $('#courseDescriptionEdit').val();
+      const enrollmentOptions = $('#enrollmentOptionsEdit').val();
+      const category = $('#categoryEdit').val();
+      var course_id = null;
+    
+      $.ajax({
+        url: 'rest/routes/Course/get_course_by_name.php',
+        method: 'POST',
+        data: { course_name: oldTitle },
+        success: function(response) {
+          console.log(response);
+          const response_parsed = JSON.parse(response);
+          course_id = response_parsed.course_id;
+          
+    
+          $.ajax({
+            url: 'rest/routes/Course/edit_course.php',
+            method: 'POST',
+            data: {
+              course_title: title,
+              course_description: description,
+              enrollment_Options: enrollmentOptions,
+              category: category,
+              course_id: course_id
+            },
+            success: function() {
+              alert('Successfully edited course');
+              // window.location.reload();
+            },
+            error: function(xhr, status, error) {
+              console.error('Error editing course:', error);
+            }
+          });
+        },
+        error: function(xhr, status, error) {
+          console.error('Error fetching course by name:', error);
+        }
+      });
+    });
+    
 
     $('#closeEditCourseFormButton').click(function () {
       $('#editCourseForm').hide(); 

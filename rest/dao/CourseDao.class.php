@@ -54,6 +54,11 @@ class CourseDao extends BaseDao {
             'id' => $id
         ]);
     }
+
+    public function get_course_by_name($course_name){
+        return $this->query_unique('SELECT * FROM courses WHERE title LIKE :title', ['title' => $course_name]);
+    }
+
     public function get_instructor_by_course_id($course_id) {
         $query = "SELECT * FROM instructors WHERE instructor_id = (
                     SELECT instructor_id FROM courses WHERE course_id = :course_id

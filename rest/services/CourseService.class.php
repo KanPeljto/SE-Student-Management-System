@@ -21,11 +21,12 @@ class CourseService {
         return $this->course_dao->get_course_by_id($course_id);
     }
 
-    public function edit_course($course) {
-        $id = $course['course_id'];
-        unset($course['course_id']);
-    
-        $this->course_dao->edit_course($id, $course);
+    public function edit_course($id, $course) {
+        return $this->course_dao->edit_course($id, $course);
+    }
+
+    public function get_course_by_name($course_name){
+        return $this->course_dao->get_course_by_name($course_name);
     }
 
     public function get_all_courses() {
