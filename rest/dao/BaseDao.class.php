@@ -42,10 +42,9 @@ class BaseDao{
             }
             }
             error_log("Generated query is : " . $prepared_statement->queryString);
-            $prepared_statement->execute();
-
+            
             if($prepared_statement){
-                return $prepared_statement;
+                return $prepared_statement->execute();
             } else {
                 return null;
             }

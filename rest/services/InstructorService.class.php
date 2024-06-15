@@ -13,6 +13,10 @@ class InstructorService {
         return $this->instructor_dao->add_instructor($instructor);
     }
 
+    public function get_instructor_by_user_id($user_id){
+        return $this->instructor_dao->get_instructor_by_user_id($user_id);
+    }
+
     public function delete_instructor_by_id($instructor_id) {
         $this->instructor_dao->delete_instructor_by_id($instructor_id);
     }

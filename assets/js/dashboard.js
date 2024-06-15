@@ -35,7 +35,7 @@ $(document).ready(function () {
 
     function fetchProfessorCourses() {
       $.ajax({
-        url: 'rest/routes/Course/get_instructor_courses',
+        url: 'rest/routes/Course/get_instructor_courses.php',
         dataType: 'json',
         headers: {'TOKEN' : token},
         success: function (data) {
@@ -71,7 +71,7 @@ $(document).ready(function () {
         dataType: 'json',
         headers: {'TOKEN' : token},
         success: function (data) {
-          if (data.role === 'professor') {
+          if (data.role === 'instructor') {
             fetchProfessorCourses(); 
           } else {
             fetchStudentCourses(); 
@@ -84,6 +84,8 @@ $(document).ready(function () {
     }
 
     fetchUserRole();
+
+    
 
     $('#addCourseButton').click(function () {
       $('#createCourseForm').show(); 
@@ -106,6 +108,6 @@ $(document).ready(function () {
       card.remove(); 
     });
 
-    fetchStudentCourses();
+    // fetchStudentCourses();
 
   });

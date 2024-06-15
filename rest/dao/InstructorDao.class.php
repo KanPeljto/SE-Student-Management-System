@@ -32,6 +32,11 @@ class InstructorDao extends BaseDao {
         );
     }
 
+    public function get_instructor_by_user_id($user_id){
+        $query = 'SELECT instructor_id FROM instructors WHERE user_id = :user_id';
+        return $this->query($query, ['user_id' => $user_id]);
+    }
+
     public function edit_instructor($id, $instructor) {
         $query = "UPDATE instructors SET 
                   instructor_name = :instructor_name,

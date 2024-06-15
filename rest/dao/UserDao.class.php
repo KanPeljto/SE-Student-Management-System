@@ -90,7 +90,7 @@ class UserDao extends BaseDao {
         }
 
         if(password_verify($password, $user['password'])){
-            $jwt = JWT::encode(['user_id' => $user['user_id']], JWT_SECRET, 'HS256');
+            $jwt = JWT::encode(['user_id' => $user['user_id'], 'role' => $user['role']], JWT_SECRET, 'HS256');
             $this->add_jwt_to_db($user['user_id'], $jwt);
             return $jwt;
         }
