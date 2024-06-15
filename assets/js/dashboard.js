@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
   var oldTitle = "";
   const token = localStorage.getItem('jwt_token');
@@ -155,9 +154,9 @@ $(document).ready(function () {
         data: { course_name: oldTitle },
         success: function(response) {
           console.log(response);
-          const response_parsed = JSON.parse(response);
-          course_id = response_parsed.course_id;
-          
+          console.log('successssss');
+          course_id = response.course_id;
+          console.log(course_id);
     
           $.ajax({
             url: 'rest/routes/Course/edit_course.php',
