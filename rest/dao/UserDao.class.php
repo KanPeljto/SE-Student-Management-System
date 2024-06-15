@@ -42,6 +42,10 @@ class UserDao extends BaseDao {
         return $this->query_unique('SELECT * FROM users WHERE user_id = :user_id', ['user_id' => $user_id]);
     }
 
+    public function get_user_by_email($email) {
+        return $this->query_unique('SELECT * FROM users WHERE email = :email', ['email' => $email]);
+    }
+
     public function get_all_users(){
         $query = "SELECT * FROM users";
         return $this->query($query, []);
@@ -61,6 +65,22 @@ class UserDao extends BaseDao {
         ]);
     }
 
+    public function login($email, $password){
+        $user = $this->get_user_by_email($email);
+        if(!$user){
+            die('User not found');
+        }
+
+        if(!password_verify($password, $user['password'])){
+            echo 'Incorrect password';
+            die();
+        }
+
+        if(password_verify($password, $user['password'])){
+            return true;
+        }
+    }
+
     // public function loginUser($email, $password){
     //     $query = "SELECT email, password FROM users WHERE email = :email";
     //     $user = $this->execute($query, ['email' => $email]);
@@ -70,3 +90,5 @@ class UserDao extends BaseDao {
     //     return false;
     // }
 }
+
+//$2y$10$WEdEacWHlG/rGtCQJqXO.Oxa70UElirWNyO.tZJXh1VzbkNO5Xoim$2y$10$E11UiFYSCu/nQkyeJzAc3Om75qiSzSgDU9i9EXiA5eGJv7hYbK6Ne 

@@ -38,5 +38,9 @@ class UserService {
     public function get_all_users() {
         return $this->user_dao->get_all_users();
     }
+
+    public function loginUser($email, $password){
+        return $this->user_dao->login($email, $password);
+    }
 }
 ?>

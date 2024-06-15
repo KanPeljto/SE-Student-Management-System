@@ -4,25 +4,23 @@ $(document).ready(function() {
         
         var email = $('#email').val();
         var password = $('#password').val();
-        
-        $.ajax({
-            url: 'rest/routes/User/get_users.php',
-            dataType: 'json',
-            success: function(userData) {
-                var matchedUser = userData.find(function(user) {
-                    return user.email === email && user.password === password;
-                });
 
-                if (matchedUser) {
-                    window.location.href = '#dashboard';
-                } else {
-                    alert('Invalid credentials. Please try again.');
-                }
+        $.ajax({
+            url:'rest/routes/User/login.php',
+            method: 'POST',
+            data: {
+                email: email,
+                password: password
             },
-            error: function(xhr, status, error) {
-                console.error('Error loading user data:', error);
+            dataType: 'json',
+            success: function(response){
+                console.log(response.loggedIn);
+                if (response.loggedIn === true){
+                    alert('Successfully logged in');
+                    window.location.href = '#home';
+                }
             }
-        });
+        })
     });
 });
 

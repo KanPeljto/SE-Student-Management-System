@@ -10,7 +10,7 @@ if(empty($payload['name']) || empty($payload['email']) || empty($payload['passwo
     header('HTTP/1.1 400 Bad Request');
     die(json_encode(['error' => "Name, email, password, or role field is missing"]));
 }
-
+$payload['password'] = password_hash($payload['password'], PASSWORD_DEFAULT);
 $user = $user_service->add_user($payload);
 
 echo json_encode(['message' => "You have successfully added the user", 'data' => $user]);
