@@ -16,6 +16,11 @@ class CourseDao extends BaseDao {
         return $this->query($query, []);
     }
 
+    public function get_instructor_courses($user_id){
+        $query = 'SELECT * FROM courses WHERE instructor_id = :instructor_id';
+        return $this->execute($query, ['instructor_id' => $user_id]);
+    }
+
     public function delete_course_by_id($id) {
         $query = "DELETE FROM courses WHERE course_id = :id";
         $this->execute($query, [

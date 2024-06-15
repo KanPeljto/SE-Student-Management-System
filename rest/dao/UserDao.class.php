@@ -80,8 +80,8 @@ class UserDao extends BaseDao {
         }
 
         if(!password_verify($password, $user['password'])){
-            echo 'Incorrect password';
-            die();
+            http_response_code(400);
+            return 'Incorrect password';
         }
 
         if(password_verify($password, $user['password'])){

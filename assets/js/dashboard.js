@@ -1,5 +1,10 @@
 $(document).ready(function () {
-    var token = localStorage.getItem('jwt_token');
+  const token = localStorage.getItem('jwt_token');
+  if (!token) {
+      console.error('JWT token is missing');
+      window.location.href = '#login';
+  }
+
   function fetchStudentCourses() {
       $.ajax({
         url: 'rest/routes/Course/get_courses.php',
@@ -30,8 +35,9 @@ $(document).ready(function () {
 
     function fetchProfessorCourses() {
       $.ajax({
-        url: 'http://localhost/OLP/data/professorCourses.json',
+        url: 'rest/routes/Course/get_instructor_courses',
         dataType: 'json',
+        headers: {'TOKEN' : token},
         success: function (data) {
           const courseList = $('#courseList');
           courseList.empty(); 

@@ -40,5 +40,9 @@ class CourseService {
         return $this->course_dao->get_enrolled_users_by_course_id($course_id);
     }
 
+    public function get_instructor_courses($user_id){
+        return $this->course_dao->get_instructor_courses($user_id);
+    }
+
 }
 ?>
