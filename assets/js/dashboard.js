@@ -47,7 +47,7 @@ $(document).ready(function () {
             <div class="col-md-4 mb-4">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">${course.name}</h5>
+                  <h5 class="card-title">${course.title}</h5>
                   <p class="card-text">${course.description}</p>
                   <div class="text-end">
                     <button class="btn btn-primary btn-sm me-2 editCourse">Edit</button>
