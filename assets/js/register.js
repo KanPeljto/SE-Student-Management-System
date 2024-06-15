@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
     $('#regForm').submit(function(event) {
         event.preventDefault();
@@ -16,7 +17,6 @@ $(document).ready(function() {
                 if (returnedData.length !== 0) {
                     alert('User already registered');
                     window.location.reload(); 
-                    console.log(returnedData);
                 } else {
                     $.ajax({
                         url: 'rest/routes/User/add_user.php',
@@ -34,14 +34,15 @@ $(document).ready(function() {
                                     url: 'rest/routes/User/get_user_email.php',
                                     data: {email: email},
                                     method: 'POST',
-                                    success: function(data){
-                                        const user_id = data.user_id;
-                                        console.log('user_id');
+                                    success: function(response){
+                                        const user = JSON.parse(response);
+                                        console.log(user);
                                         $.ajax({
                                             url: 'rest/routes/Instructor/add_instructor.php',
-                                            data: {instructor_name: name, user_id : user_id},
+                                            data: {
+                                                instructor_name: name,
+                                                user_id : user[0].user_id},
                                             method: 'POST',
-                                            dataType: 'json',
                                             success: function(){
                                                 console.log('instructor successfully added to table');
                                             }
