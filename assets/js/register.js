@@ -8,20 +8,16 @@ $(document).ready(function() {
         var role = $('#role').val();
 
         $.ajax({
-            url: 'rest/routes/User/get_users.php',
+            url: 'rest/routes/User/get_user_email.php',
             dataType: 'json',
+            method: 'POST',
+            data: {email: email},
             success: function(returnedData){
-                var userExists = false;
-                for (var i = 0; i < returnedData.length; i++) {
-                    if (returnedData[i].email === email) {
-                        userExists = true;
-                        break;
+                    if(returnedData !== null){
+                        alert('User already registered');
+                        window.location.reload();
                     }
-                }
-
-                if (userExists) {
-                    alert('User already registered');
-                } else {
+                 else {
                     $.ajax({
                         url: 'rest/routes/User/add_user.php',
                         method: 'POST',

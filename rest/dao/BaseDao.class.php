@@ -43,7 +43,12 @@ class BaseDao{
             }
             error_log("Generated query is : " . $prepared_statement->queryString);
             $prepared_statement->execute();
-            return $prepared_statement;
+
+            if($prepared_statement){
+                return $prepared_statement;
+            } else {
+                return null;
+            }
         }
     
         public function insert($table, $entity) {

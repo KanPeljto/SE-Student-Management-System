@@ -46,5 +46,9 @@ class UserService {
     public function verifyToken($token){
         return $this->user_dao->verifyToken($token);
     }
+
+    public function get_user_email($email){
+        return $this->user_dao->get_user_email($email);
+    }
 }
 ?>
