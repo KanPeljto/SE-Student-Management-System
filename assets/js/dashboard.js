@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
   const token = localStorage.getItem('jwt_token');
   if (!token) {
@@ -71,6 +72,7 @@ $(document).ready(function () {
         dataType: 'json',
         headers: {'TOKEN' : token},
         success: function (data) {
+          const user_id = data.user_id;
           if (data.role === 'instructor') {
             fetchProfessorCourses(); 
           } else {
@@ -91,6 +93,44 @@ $(document).ready(function () {
       $('#createCourseForm').show(); 
     });
 
+    $('#createCourseForm').on('submit', () => {
+      const courseTitle = $('#courseTitle').val();
+      const courseDescription = $('#courseDescription').val();
+      const courseMaterial = $('#courseMaterial').val();
+      const enrollmentOptions = $('#enrollmentOptions').val();
+      const category = $('#category').val();
+
+      $.ajax({
+        url: 'rest/routes/User/get_user.php',
+        dataType: 'json',
+        headers: {'TOKEN' : token},
+        success: function (data) {
+          const user_id = data.user_id;
+          $.ajax({
+            url: 'rest/routes/Instructor/get_instructor_by_user_id.php',
+            data: {user_id: user_id},
+            method: 'POST',
+            success: function(instructor){
+              var instructor_json = JSON.parse(instructor);
+              const instructor_id = instructor_json[0].instructor_id;
+              $.ajax({
+                url:'rest/routes/Course/add_course.php',
+                method: 'POST',
+                data: {course_title: courseTitle, course_description: courseDescription, course_material: courseMaterial, enrollment_options: enrollmentOptions, category: category, instructor_id : instructor_id},
+                success: function(){
+                  alert('Successfully added course');
+                }
+              })
+            }
+          })
+        },
+        error: function (xhr, status, error) {
+          console.error('Error fetching user: ', error);
+        }
+      });
+      
+    });
+
     $('#closeCreateCourseFormButton').click(function () {
       $('#createCourseForm').hide(); 
     });
@@ -109,5 +149,4 @@ $(document).ready(function () {
     });
 
     // fetchStudentCourses();
-
   });

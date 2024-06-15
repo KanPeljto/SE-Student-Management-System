@@ -11,6 +11,7 @@ class InstructorDao extends BaseDao {
         return $this->insert('instructors', $instructor);
     }
 
+
     public function get_all_instructors() {
         $query = "SELECT * FROM instructors";
         return $this->query($query, []);
