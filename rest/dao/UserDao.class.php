@@ -8,7 +8,7 @@ class UserDao extends BaseDao {
     }
 
     public function add_user($user) {
-        return $this->user_dao->insert('users', $user);
+        return $this->insert('users', $user);
     }
 
     public function count_users_paginated($search) {
