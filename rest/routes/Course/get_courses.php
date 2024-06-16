@@ -6,7 +6,7 @@ $courses = $course_service->get_all_courses();
 
 foreach ($courses as &$course) {
     $instructor = $course_service->get_instructor_by_course_id($course['course_id']);
-    $course['instructor'] = $instructor['instructor_name'];
+    // $course['instructor_id'] = 'asd';
 
     $enrollment_status = $course['enrollment_status'];
 
