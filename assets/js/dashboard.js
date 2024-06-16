@@ -11,6 +11,7 @@ $(document).ready(function () {
     $.ajax({
       url: 'rest/routes/Course/get_courses.php',
       dataType: 'json',
+      headers: {'TOKEN': token},
       success: function (data) {
         const studentCourseList = $('#studentCourseList');
         studentCourseList.empty(); 
@@ -116,6 +117,7 @@ $(document).ready(function () {
             $.ajax({
               url:'rest/routes/Course/add_course.php',
               method: 'POST',
+              headers: {'TOKEN': token},
               data: {course_title: courseTitle, course_description: courseDescription, course_material: courseMaterial, enrollment_options: enrollmentOptions, category: category, instructor_id : instructor_id},
               success: function(){
                 alert('Successfully added course');
@@ -150,6 +152,7 @@ $(document).ready(function () {
       url: 'rest/routes/Course/get_course_by_name.php',
       method: 'POST',
       data: { course_name: oldTitle },
+      headers: {'TOKEN': token},
       success: function(response) {
         const response_parsed = JSON.parse(response);
         course_id = response_parsed.course_id;

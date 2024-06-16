@@ -51,5 +51,8 @@ class UserService {
         return $this->user_dao->get_user_email($email);
     }
 
+    public function checkJWT($token){
+        return $this->user_dao->verifyToken($token);
+    }
 }
 ?>
