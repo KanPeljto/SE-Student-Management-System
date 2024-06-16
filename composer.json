@@ -1,6 +1,9 @@
 {
+    "name": "kan/cen308app",
+    "description": "SE - Student Management System",
+    "type": "project",
     "require": {
-        "mikecao/flight": "^3.6",
+        "flightphp/core": "^3.10",
         "firebase/php-jwt": "^6.10"
     }
- }
+}

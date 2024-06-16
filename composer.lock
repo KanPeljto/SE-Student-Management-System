@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a086afe59801e26c1a7063a74af1c901",
+    "content-hash": "371ce243db2aaf8320f6bfc0c6e683db",
     "packages": [
         {
             "name": "firebase/php-jwt",
@@ -70,7 +70,7 @@
             "time": "2024-05-18T18:05:11+00:00"
         },
         {
-            "name": "mikecao/flight",
+            "name": "flightphp/core",
             "version": "v3.10.1",
             "source": {
                 "type": "git",
@@ -86,6 +86,9 @@
             "require": {
                 "ext-json": "*",
                 "php": ">=7.4"
+            },
+            "replace": {
+                "mikecao/flight": "2.0.2"
             },
             "require-dev": {
                 "ext-pdo_sqlite": "*",
