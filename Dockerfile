@@ -22,6 +22,11 @@ RUN if command -v a2enmod >/dev/null 2>&1; then \
        COPY composer.json composer.json
        RUN composer install --no-dev
        
-       
+       # Copy custom Apache config
+       COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+
+       # Ensure Apache uses the custom config
+       RUN a2ensite 000-default.conf
+
        EXPOSE 80
        EXPOSE 443
