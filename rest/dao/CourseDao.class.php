@@ -29,12 +29,22 @@ class CourseDao extends BaseDao {
     }
 
     public function get_course_by_id($course_id){
-        return $this->query_unique(
+        $course = $this->query_unique(
             "SELECT * FROM courses WHERE course_id = :id",
             [
                 'id' => $course_id
             ]
         );
+
+        if ($course) {
+            $lectures = $this->query(
+                "SELECT * FROM lectures WHERE course_id = :course_id",
+                ['course_id' => $course_id]
+            );
+            $course['lectures'] = $lectures;
+        }
+
+        return $course;
     }
 
     public function edit_course($id, $course) {

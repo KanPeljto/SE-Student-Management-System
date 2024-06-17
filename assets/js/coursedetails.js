@@ -1,3 +1,4 @@
+const courseId = localStorage.getItem('courseId');
 $(document).ready(function () {
     var token = localStorage.getItem('jwt_token');
     $.ajax({

@@ -34,7 +34,7 @@
             window.location.hash = config.pageNotFound;
             return;
           }
-          console.log(id+" not defined");
+          //console.log(id+" not defined");
           return;
         }
   
