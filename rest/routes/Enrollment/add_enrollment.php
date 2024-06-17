@@ -1,9 +1,15 @@
 <?php
-require_once __DIR__ . '/../services/EnrollmentService.class.php';
+require_once __DIR__ . '/../../services/EnrollmentService.class.php';
 
 $enrollment_service = new EnrollmentService();
-$raw_data = file_get_contents("php://input");
-$payload = json_decode($raw_data, true);
+$user_id = $_POST['user_id'];
+$course_id = $_POST['course_id'];
+
+$payload = [
+    'user_id' => $user_id,
+    'course_id' => $course_id
+];
+
 
 $enrollment = $enrollment_service->add_enrollment($payload);
 

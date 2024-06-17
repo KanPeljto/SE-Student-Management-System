@@ -1,5 +1,6 @@
 $(document).ready(() => {
   const courseAccordion = $('#courseAccordion');
+  const token = localStorage.getItem('jwt_token');
 
   $.ajax({
     url: 'rest/routes/Course/get_courses.php',
@@ -22,7 +23,7 @@ $(document).ready(() => {
                         <div class="card-body">
                           <h5 class="card-title">${course.title}</h5>
                           <p class="card-text">${course.description}</p>
-                          <a href="#enroll" class="btn btn-primary">Enroll Now</a>
+                          <a href="#enroll" id="enroll-btn-${course.course_id}" class="btn btn-primary">Enroll Now</a>
                         </div>
                       </div>
                     </div>
@@ -33,7 +34,38 @@ $(document).ready(() => {
           `);
 
           courseAccordion.append(accordionItem);
+
+          accordionItem.find(`#enroll-btn-${course.course_id}`).click((e) => {
+            e.preventDefault();
+            localStorage.setItem('course_ID', course.course_id);
+
+            $.ajax({
+              url: 'rest/routes/User/get_user.php',
+              headers: { 'TOKEN' : token },
+              success: function (userData) {
+                const user_id = userData.user_id;
+                console.log(token);
+                $.ajax({
+                  url: 'rest/routes/Enrollment/add_enrollment.php',
+                  method: 'POST',
+                  data: { user_id: user_id, course_id: course.course_id },
+                  success: function (response) {
+                    alert('You have successfully registered for this course!');
+                    localStorage.removeItem('course_ID');
+                  },
+                  error: function () {
+                    alert('Error, please try again');
+                    localStorage.removeItem('course_ID');
+                  }
+                });
+              },
+              error: function (xhr, status, error) {
+                console.error('Error fetching user information:', error);
+              }
+            });
+          });
         });
+
       } else {
         courseAccordion.html('<p>No courses found.</p>');
       }

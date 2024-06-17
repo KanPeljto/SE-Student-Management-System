@@ -8,8 +8,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 
-// Retrieve the user ID from the request
 $token = $_SERVER['HTTP_TOKEN'];
+
 if(!$token || $token === null){
     echo json_encode(['error' => 'Token missing or invalid']);
     http_response_code(401);

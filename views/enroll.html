@@ -24,16 +24,21 @@
       <button type="submit" class="btn btn-primary">Enroll Now</button>
     </form>
   </div>
-
+  <script src="./assets/js/verifyToken.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script>
     $(document).ready(function () {
+      const token = localStorage.getItem('jwt_token');
+      console.log(token);
+      var user_id = null;
+
       $.ajax({
-        url: 'http://localhost/OLP/data/userinfo.json',
-        dataType: 'json',
+        url: 'rest/routes/User/get_user.php',
+        headers:{'TOKEN': token},
         success: function (userData) {
-          $('#name').val(userData.fullName);
+          $('#name').val(userData.name);
           $('#email').val(userData.email);
+          user_id = userData.user_id;
         },
         error: function (xhr, status, error) {
           console.error('Error fetching user information:', error);
@@ -41,21 +46,32 @@
       });
 
 
-      $('#enrollmentForm').submit(function (e) {
-        e.preventDefault();
-        var name = $('#name').val();
-        var email = $('#email').val();
-        var course = $('#course').val();
-        
+      // $('#enrollmentForm').submit(function (e) {
+      //   e.preventDefault();
+      //   var name = $('#name').val();
+      //   var email = $('#email').val();
+      //   var course_id = localStorage.getItem('course_ID');
 
-        console.log('Enrolling ' + name + ' (' + email + ') in course ' + course);
+      //   console.log('Enrolling ' + name + ' (' + email + ') in course');
 
 
-        window.location.href = '#dashboard';
-      });
+      //   $.ajax({
+      //     url:'rest/routes/Enrollment/add_enrollment.php',
+      //     method:'POST',
+      //     data: {user_id: user_id, course_id: course_id},
+      //     success: function(response){
+      //       alert('You have successfully registered for this course!')
+      //       localStorage.removeItem('course_ID');
+      //     },
+      //     error: () => {
+      //       alert('Error, please try again');
+      //       localStorage.removeItem('course_ID');
+      //     }
+      //   });
+
+      // });
     });
   </script>
-  <script src="./assets/js/verifyToken.js"></script>
 
 </body>
 </html>
