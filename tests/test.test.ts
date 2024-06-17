@@ -1,6 +1,6 @@
 import { Builder, By } from "selenium-webdriver";
 let driver;
-let url = 'http://localhost/OLP/SE-Student-Management-System/index.html#home';
+let url = 'https://se-student-management-system-gig6.onrender.com/';
 
 
 beforeAll(async () => {
