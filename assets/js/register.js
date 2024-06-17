@@ -21,12 +21,12 @@ $(document).ready(function() {
                     $.ajax({
                         url: 'rest/routes/User/add_user.php',
                         method: 'POST',
-                        data: JSON.stringify({
+                        data: {
                             'email': email,
                             'name': name,
                             'password': password,
                             'role': role
-                        }),
+                        },
                         dataType: 'json',
                         success: function(data) {
                             if(role === 'instructor'){

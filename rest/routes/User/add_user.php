@@ -2,8 +2,20 @@
 require_once __DIR__ . '/../../services/UserService.class.php';
 // require_once __DIR__ . 'verifyJWT.php';
 
-$raw_data = file_get_contents("php://input");
-$payload = json_decode($raw_data, true);
+// $raw_data = file_get_contents("php://input");
+// $payload = json_decode($raw_data, true);
+
+$name = $_POST['name'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+$role = $_POST['role'];
+
+$payload = [
+    'name' => $name,
+    'email' => $email,
+    'password' => $password,
+    'role' => $role
+];
 
 $user_service = new UserService();
 
