@@ -1,3 +1,4 @@
+const courseId = localStorage.getItem('courseId');
 $(document).ready(function () {
   var oldTitle = "";
   const token = localStorage.getItem('jwt_token');
@@ -22,7 +23,7 @@ $(document).ready(function () {
                 <div class="card-body">
                   <h5 class="card-title">${course.title}</h5>
                   <p class="card-text">${course.description}</p>
-                  <a href="#coursedetails" class="btn btn-primary" data-course-id="${course.course_id}">View Course</a>
+                  <a class="btn btn-primary view-details-btn" onClick="viewCourse('${course.course_id}')">View Details</a>
                 </div>
               </div>
             </div>`;
